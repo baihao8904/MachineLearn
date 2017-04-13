@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import time
 #两个工具函数
 #a,b是预设的互为相反数的参数。rand函数生成。从a到b的随机值
 def rand(a,b):
@@ -112,14 +113,18 @@ class BPNeuralNetwork:
         return error
 
     def train(self,cases,labels,limit=10000,learn=0.05,correct=0.1):
+        starttraintime = time.time()
         for i in range(limit):
             error = 0.0
             for casenum in range(len(cases)):
                 label = labels[casenum]
                 case = cases[casenum]
                 error += self.backprobagate(case,label,learn,correct)
+            if i%100 ==0:
+                print('迭代',i,'次',end=' ')
+                print('当前用时：',time.time()-starttraintime)
             if i%500 ==0:
-                print('当前误差是%f'%error)
+                print('当前第'+str(i)+'次误差是%f'%error)
 
     def test(self):
         cases = [
