@@ -141,7 +141,7 @@ class BPNeuralNetwork:
     
     def testData(self,train,label):
         self.initNN(5,7,1)
-        self.train(train,label,10000,0.05,0.1)
+        self.train(train,label,2001,0.05,0.1)
 
 if __name__ == '__main__':
     theBPNN = BPNeuralNetwork()
